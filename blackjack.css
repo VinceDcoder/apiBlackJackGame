@@ -1,0 +1,46 @@
+body{
+    text-align: center;
+    background-color: black;
+}
+
+#jbTable{
+    background-color: green;
+    border-radius: 500px;
+    border: 20px solid rgb(148, 88, 8);
+}
+
+#dealer_cards img{
+    height: 175px;
+    width: 125px;
+    margin: 1px;
+}
+
+#hidden{
+    border-radius: 5px;
+}
+
+#player_cards img{
+    height: 175px;
+    width: 125px;
+    margin: 1px;
+}
+
+#hit, #stay{
+    width: 90px;
+    height: 40px;
+    font-size: 25px;
+    font-weight: bold;
+    border: 2px solid black;
+    border-radius: 55px;
+    background-color: rgb(193, 120, 10);
+}
+
+#tryAgain{
+    width: 90px;
+    height: 30px;
+    margin-top: 5px;
+    font-size: 15px;
+    border: 2px solid black;
+    border-radius: 15px;
+    background-color: rgb(193, 120, 10);
+}
