@@ -51,7 +51,7 @@ function startGame() {
         dealerAceCount += checkAce(card);
         document.getElementById("dealer_cards").append(cardImg);
     }
-    console.log(dealerSum);
+    //console.log(dealerSum);
 
     for (let i = 0; i < 2; i++) {
         let cardImg = document.createElement("img");
@@ -60,12 +60,13 @@ function startGame() {
         playerSum += getValue(card);
         playerAceCount += checkAce(card);
         document.getElementById("player_cards").append(cardImg);
+        
     }
 
     console.log(playerSum);
     document.getElementById("hit").addEventListener("click", hit);
     document.getElementById("stay").addEventListener("click", stay);
-
+    document.getElementById("player_sum").append(playerSum);
 }
 
 function hit() {
@@ -79,7 +80,8 @@ function hit() {
     playerSum += getValue(card);
     playerAceCount += checkAce(card);
     document.getElementById("player_cards").append(cardImg);
-
+    document.getElementById("player_sum").innerText = playerSum;
+    
     if (reduceAce(playerSum, playerAceCount) > 21) {
         canHit = false;
     }
