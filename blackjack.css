@@ -10,19 +10,22 @@ body{
 }
 
 #dealer_cards img{
-    height: 175px;
-    width: 125px;
+    height: 300px;
+    width: 225px;
     margin: 1px;
+    margin-left: -80px;
+    margin-right: -80px;
 }
 
 #hidden{
-    border-radius: 5px;
+    border-radius: 10px;
 }
 
 #player_cards img{
-    height: 175px;
-    width: 125px;
-    margin: 1px;
+    height: 300px;
+    width: 225px;
+    margin-left: -80px;
+    margin-right: -80px;
 }
 
 #hit, #stay{

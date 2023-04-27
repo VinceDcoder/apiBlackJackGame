@@ -7,8 +7,11 @@ var playerAceCount = 0;
 var hidden;
 var deck;
 
-var canHit = true; //allows the player to draw while playerSum <= 21
-var canTryA = false;
+var canHit = true;
+
+var wins = 0;
+
+let message = "";
 
 window.onload = function loadGame(){
     buildDeck();
@@ -51,7 +54,6 @@ function startGame() {
         dealerAceCount += checkAce(card);
         document.getElementById("dealer_cards").append(cardImg);
     }
-    //console.log(dealerSum);
 
     for (let i = 0; i < 2; i++) {
         let cardImg = document.createElement("img");
@@ -63,7 +65,6 @@ function startGame() {
         
     }
 
-    console.log(playerSum);
     document.getElementById("hit").addEventListener("click", hit);
     document.getElementById("stay").addEventListener("click", stay);
     document.getElementById("player_sum").append(playerSum);
@@ -94,27 +95,23 @@ function stay() {
     canHit = false;
     document.getElementById("hidden").src = "./cards/" + hidden + ".png";
 
-    let message = "";
-    if (playerSum > 21) {
+    if (playerSum > 21 || playerSum < dealerSum) {
         message = "You Lose!";
     }
-    else if (dealerSum > 21) {
+    else if (dealerSum > 21 || playerSum > dealerSum) {
         message = "You win!";
+        wins += wins;
     }
-    //both you and dealer <= 21
     else if (playerSum == dealerSum) {
         message = "Tie!";
     }
-    else if (playerSum > dealerSum) {
-        message = "You Win!";
-    }
-    else if (playerSum < dealerSum) {
-        message = "You Lose!";
-    }
+
+
 
     document.getElementById("dealer_sum").innerText = dealerSum;
     document.getElementById("player_sum").innerText = playerSum;
     document.getElementById("results").innerText = message;
+    document.getElementById("number_of_win").innerText = wins;
 }
 
 function getValue(card) {
@@ -145,14 +142,12 @@ function reduceAce(playerSum, playerAceCount) {
     return playerSum;
 }
 
-// function reloadGame(){
-//     if(playerSum > 21 || playerSum < dealerSum){
-//         window.location.reload();
-//     }
-// }
-<<<<<<< HEAD
-=======
+function reloadGame(){
+    if(message != ""){
+        var dealerSum = 0, playerSum = 0, dealerAceCount = 0, playerAceCount = 0, hidden, deck, canHit = true;
+        buildDeck();
+        shuffleDeck();
+        startGame();
+    }
+}
 
-
-//AARON WAS HERE
->>>>>>> f92e2575fd16c5874a0d7c93cbd8463042a0ff51
