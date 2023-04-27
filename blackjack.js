@@ -11,7 +11,7 @@ var canHit = true;
 
 var wins = 0;
 
-window.onload = function loadGame(){
+window.onload = function(){
     buildDeck();
     shuffleDeck();
     startGame();
@@ -85,9 +85,8 @@ function hit() {
 
     if (reduceAce(playerSum, playerAceCount) > 21) {
         canHit = false;
-        message = "You Lose!";
     }
-    document.getElementById("results").innerText = message;
+
 }
 
 function stay() {
