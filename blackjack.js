@@ -11,8 +11,6 @@ var canHit = true;
 
 var wins = 0;
 
-let message = "";
-
 window.onload = function loadGame(){
     buildDeck();
     shuffleDeck();
@@ -83,9 +81,13 @@ function hit() {
     document.getElementById("player_cards").append(cardImg);
     document.getElementById("player_sum").innerText = playerSum;
     
+    let message = "";
+
     if (reduceAce(playerSum, playerAceCount) > 21) {
         canHit = false;
+        message = "You Lose!";
     }
+    document.getElementById("results").innerText = message;
 }
 
 function stay() {
@@ -94,6 +96,8 @@ function stay() {
 
     canHit = false;
     document.getElementById("hidden").src = "./cards/" + hidden + ".png";
+    
+    let message = "";
 
     if (playerSum > 21 || playerSum < dealerSum) {
         message = "You Lose!";
@@ -143,8 +147,8 @@ function reduceAce(playerSum, playerAceCount) {
 }
 
 function reloadGame(){
-    if(message != ""){
-        var dealerSum = 0, playerSum = 0, dealerAceCount = 0, playerAceCount = 0, hidden, deck, canHit = true;
+    if(canHit == false){
+        var dealerSum = 0, playerSum = 0, dealerAceCount = 0, playerAceCount = 0, canHit = true;
         buildDeck();
         shuffleDeck();
         startGame();
