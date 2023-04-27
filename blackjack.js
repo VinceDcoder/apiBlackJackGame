@@ -148,3 +148,6 @@ function reduceAce(playerSum, playerAceCount) {
 //         window.location.reload();
 //     }
 // }
+
+
+//AARON WAS HERE
