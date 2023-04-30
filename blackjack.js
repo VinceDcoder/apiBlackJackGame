@@ -7,6 +7,8 @@ var playerAceCount = 0;
 var hidden;
 var deck;
 
+var wins = 0;
+
 var canHit = true;
 
 var betAmount = 1000;
@@ -36,7 +38,6 @@ function shuffleDeck() {
         deck[i] = deck[j];
         deck[j] = temp;
     }
-    console.log(deck);
 }
 
 function startGame() {
@@ -86,11 +87,13 @@ function hit() {
     if (reduceAce(playerSum, playerAceCount) > 21) {
         canHit = false;
         message = "You Lose!";
+        document.getElementById("display_results").style.display = "initial";
     }
     document.getElementById("game_results").innerText = message;
 }
 
 function stay() {
+    console.log('test');
     dealerSum = reduceAce(dealerSum, dealerAceCount);
     playerSum = reduceAce(playerSum, playerAceCount);
 
@@ -104,6 +107,7 @@ function stay() {
     }
     else if (dealerSum > 21) {
         message = "You win!";
+        wins++;
         document.getElementById("display_results").style.display = "initial";
     }
     else if (playerSum == dealerSum) {
@@ -113,6 +117,7 @@ function stay() {
     //checks sums if both are greater than 21
     else if(playerSum > dealerSum){
         message = "You win!";
+        wins++;
         document.getElementById("display_results").style.display = "initial";
     }
     else if(playerSum < dealerSum){
@@ -124,13 +129,15 @@ function stay() {
     document.getElementById("player_sum").innerText = playerSum;
 
     document.getElementById("game_results").innerText = message;
+    document.getElementById("number_of_wins").innerText = wins;
+
 }
 
 function getValue(card) {
-    let data = card.split("-"); // "4-C" -> ["4", "C"]
+    let data = card.split("-"); 
     let value = data[0];
 
-    if (isNaN(value)) { //A J Q K
+    if (isNaN(value)) { 
         if (value == "A") {
             return 11;
         }
@@ -154,9 +161,32 @@ function reduceAce(playerSum, playerAceCount) {
     return playerSum;
 }
 
-// function reloadGame(){
-//     buildDeck();
-//     shuffleDeck();
-//     startGame();
-// }
+function reloadGame(){
+    playerAceCount = 0;
+    playerSum = 0;
+    dealerAceCount = 0;
+    dealerSum = 0;
+
+    canHit = true;
+
+    document.getElementById("display_results").style.display = "none";
+
+    // clears dealer and player hands
+    document.getElementById("dealer_cards").innerHTML = "";
+    document.getElementById("player_cards").innerHTML = "";
+
+    // clears the sums
+    document.getElementById("dealer_sum").innerHTML = "";
+    document.getElementById("player_sum").innerHTML = "";
+
+    // creates the hands for dealer
+    let dealerHidden = document.createElement("img");
+    dealerHidden.setAttribute("id","hidden");
+    dealerHidden.setAttribute("src", "./cards/BACK.png");
+    document.getElementById("dealer_cards").appendChild(dealerHidden);
+
+    buildDeck();
+    shuffleDeck();
+    startGame();
+}
 

@@ -38,6 +38,7 @@ body{
 
 /* Play Buttons */
 #hit, #stay{
+    cursor: pointer;
     width: 90px;
     height: 40px;
     font-size: 25px;
@@ -73,7 +74,7 @@ body{
     height: 140px;
     padding: 15px;
     position: fixed;
-    top: 30%;
+    top: 35%;
     left: 50%;
     transform: translate(-50%, -50%);
     transition: 200ms ease-in-out;
@@ -82,6 +83,7 @@ body{
     background-color: rgb(197, 49, 49);
 }
 #try_again{
+    cursor: pointer;
     width: 90px;
     height: 30px;
     margin-top: 5px;
