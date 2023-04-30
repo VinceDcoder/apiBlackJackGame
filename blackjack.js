@@ -155,11 +155,8 @@ function reduceAce(playerSum, playerAceCount) {
 }
 
 // function reloadGame(){
-//     if(canHit == false){
-//         var dealerSum = 0, playerSum = 0, dealerAceCount = 0, playerAceCount = 0, canHit = true;
-//         buildDeck();
-//         shuffleDeck();
-//         startGame();
-//     }
+//     buildDeck();
+//     shuffleDeck();
+//     startGame();
 // }
 
