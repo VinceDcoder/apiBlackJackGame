@@ -9,6 +9,7 @@
     </head>
 
     <body>
+        <h1 id="game_name">Jack Black's Black Jack</h1>
         <div id="jbTable">
             <div class="column">
                 <button class="chips" id="bet_100"></button>
@@ -38,6 +39,11 @@
             <p id="game_results"></p>
             <p>Wins: <span id="number_of_wins"></span></p>
             <button id="try_again" onclick="reloadGame()">Try Again</button>
-        </div>         
+        </div>     
+        
+        <h2 id="music_selection" >Music: </h2>
+        <audio controls loop>
+            <source src="./musicFiles/SpotifyMate.com - Peaches - Jack Black.mp3" type="audio/mpeg">
+        </audio>
     </body>
 </html>
