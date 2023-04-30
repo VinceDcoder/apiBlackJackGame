@@ -11,7 +11,11 @@ var wins = 0;
 
 var canHit = true;
 
-var betAmount = 1000;
+var betTotal = 1000;
+var chips100 = 100;
+var chips200 = 200;
+var chips500 = 500;
+var chips1000 = 1000;
 
 window.onload = function loadGame(){
     buildDeck();
@@ -87,13 +91,15 @@ function hit() {
     if (reduceAce(playerSum, playerAceCount) > 21) {
         canHit = false;
         message = "You Lose!";
+        document.getElementById("dealer_sum").innerText = dealerSum;
+        document.getElementById("game_results").innerText = message;
         document.getElementById("display_results").style.display = "initial";
     }
-    document.getElementById("game_results").innerText = message;
+
+    document.getElementById("player_sum").innerText = playerSum;
 }
 
 function stay() {
-    console.log('test');
     dealerSum = reduceAce(dealerSum, dealerAceCount);
     playerSum = reduceAce(playerSum, playerAceCount);
 
