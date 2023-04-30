@@ -10,22 +10,33 @@
 
     <body>
         <div id="jbTable">
-            <h2>Dealer: <span id="dealer_sum"></span></h2>
-            <div id="dealer_cards">
-                <img id="hidden" src="./cards/BACK.png">
+            <div class="column">
+                <button class="chips" id="bet_100"></button>
+                <button class="chips" id="bet_200"></button>
+                <button class="chips" id="bet_500"></button>
+                <button class="chips" id="bet_1000"></button>
             </div>
-
-            <h2>You: <span id="player_sum"></span></h2>
-            <div id="player_cards"></div>
-            <br>
-
-            <button id="hit">Hit</button>
-            <button id="stay">Stay</button> 
-            <br>
-            
-            <button id="tryAgain" onclick="reloadGame()">Try Again</button>
-            <p id="results"></p>
-            <h3>Number of Wins: <span id="number_of_wins"></span></h3>
+            <div class="column">
+                    <h2>Dealer: <span id="dealer_sum"></span></h2>
+                    <div id="dealer_cards">
+                        <img id="hidden" src="./cards/BACK.png">
+                    </div>
+        
+                    <h2>You: <span id="player_sum"></span></h2>
+                    <div id="player_cards"></div>
+                    <br>
+        
+                    <button id="hit">Hit</button>
+                    <button id="stay">Stay</button> 
+                    <br>               
+            </div>
+            <div class="column">
+                <!-- empty space for now -->
+            </div>
         </div>
+        <div id="display_results" style="display: none"> 
+            <p id="game_results"></p>
+            <button id="try_again" onclick="reloadGame()">Try Again</button>
+        </div>         
     </body>
 </html>

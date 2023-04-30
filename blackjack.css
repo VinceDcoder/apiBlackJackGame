@@ -2,17 +2,22 @@ body{
     text-align: center;
     background-color: black;
 }
-
+/* Table */
 #jbTable{
-    height: 98%;
+    height: 700px;
     background-color: green;
     border-radius: 325px;
     border: 30px solid rgb(148, 88, 8);
 }
+.column{
+    float: left;
+    width: 33.33%;
+}
 
+/* Cards */
 #dealer_cards img{
-    height: 175px;
-    width: 125px;
+    height: 200px;
+    width: 150px;
     margin: 1px;
     margin-left: -40px;
     margin-right: -40px;
@@ -24,13 +29,14 @@ body{
 }
 
 #player_cards img{
-    height: 175px;
-    width: 125px;
+    height: 200px;
+    width: 150px;
     margin-left: -40px;
     margin-right: -40px;
     border-radius: 10px;
 }
 
+/* Play Buttons */
 #hit, #stay{
     width: 90px;
     height: 40px;
@@ -41,7 +47,41 @@ body{
     background-color: rgb(193, 120, 10);
 }
 
-#tryAgain{
+/* Chips */
+.chips{
+    float: right;
+    height: 50px;
+    width: 50px;
+    border-radius: 50px ;
+}
+#bet_100{
+    margin-top: 70%;
+}
+#bet_200{
+    margin-top: 70%;
+}
+#bet_500{
+    margin-top: 70%;
+}
+#bet_1000{
+    margin-top: 70%;
+}
+
+/* Lost Menu */
+#display_results{
+    width: 180px;
+    height: 140px;
+    padding: 15px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: 200ms ease-in-out;
+    border: 5px solid black;
+    border-radius: 10px;
+    background-color: rgb(197, 49, 49);
+}
+#try_again{
     width: 90px;
     height: 30px;
     margin-top: 5px;

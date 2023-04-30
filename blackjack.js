@@ -9,9 +9,9 @@ var deck;
 
 var canHit = true;
 
-var wins = 0;
+var betAmount = 1000;
 
-window.onload = function(){
+window.onload = function loadGame(){
     buildDeck();
     shuffleDeck();
     startGame();
@@ -85,8 +85,9 @@ function hit() {
 
     if (reduceAce(playerSum, playerAceCount) > 21) {
         canHit = false;
+        message = "You Lose!";
     }
-
+    document.getElementById("game_results").innerText = message;
 }
 
 function stay() {
@@ -98,23 +99,31 @@ function stay() {
     
     let message = "";
 
-    if (playerSum > 21 || playerSum < dealerSum) {
+    if (playerSum > 21) {
         message = "You Lose!";
     }
-    else if (dealerSum > 21 || playerSum > dealerSum) {
+    else if (dealerSum > 21) {
         message = "You win!";
-        wins += wins;
+        document.getElementById("display_results").style.display = "initial";
     }
     else if (playerSum == dealerSum) {
         message = "Tie!";
+        document.getElementById("display_results").style.display = "initial";
     }
-
-
-
+    //checks sums if both are greater than 21
+    else if(playerSum > dealerSum){
+        message = "You win!";
+        document.getElementById("display_results").style.display = "initial";
+    }
+    else if(playerSum < dealerSum){
+        message = "You Lose!";
+        document.getElementById("display_results").style.display = "initial";
+    }
+    
     document.getElementById("dealer_sum").innerText = dealerSum;
     document.getElementById("player_sum").innerText = playerSum;
-    document.getElementById("results").innerText = message;
-    document.getElementById("number_of_win").innerText = wins;
+
+    document.getElementById("game_results").innerText = message;
 }
 
 function getValue(card) {
@@ -145,12 +154,12 @@ function reduceAce(playerSum, playerAceCount) {
     return playerSum;
 }
 
-function reloadGame(){
-    if(canHit == false){
-        var dealerSum = 0, playerSum = 0, dealerAceCount = 0, playerAceCount = 0, canHit = true;
-        buildDeck();
-        shuffleDeck();
-        startGame();
-    }
-}
+// function reloadGame(){
+//     if(canHit == false){
+//         var dealerSum = 0, playerSum = 0, dealerAceCount = 0, playerAceCount = 0, canHit = true;
+//         buildDeck();
+//         shuffleDeck();
+//         startGame();
+//     }
+// }
 
