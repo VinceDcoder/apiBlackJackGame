@@ -11,11 +11,11 @@ var wins = 0;
 
 var canHit = true;
 
-var betTotal = 1000;
-var chips100 = 100;
-var chips200 = 200;
-var chips500 = 500;
-var chips1000 = 1000;
+var totalScore = 1000;
+// var chips100 = 100;
+// var chips200 = 200;
+// var chips500 = 500;
+// var chips1000 = 1000;
 
 window.onload = function loadGame(){
     buildDeck();
@@ -70,6 +70,13 @@ function startGame() {
 
     document.getElementById("hit").addEventListener("click", hit);
     document.getElementById("stay").addEventListener("click", stay);
+
+    document.getElementById("bet_100").addEventListener("click", score);
+    document.getElementById("bet_200").addEventListener("click", score);
+    document.getElementById("bet_500").addEventListener("click", score);
+    document.getElementById("bet_1000").addEventListener("click", score);
+
+
     document.getElementById("player_sum").append(playerSum);
 }
 
@@ -173,11 +180,13 @@ function reduceAce(playerSum, playerAceCount) {
 function reloadGame(){
     playerAceCount = 0;
     playerSum = 0;
+
     dealerAceCount = 0;
     dealerSum = 0;
 
     canHit = true;
 
+    // resets results pop-up
     document.getElementById("display_results").style.display = "none";
 
     // clears dealer and player hands
@@ -199,3 +208,10 @@ function reloadGame(){
     startGame();
 }
 
+function score(){
+    var value = document.getElementById("bet_100").value;
+
+    
+
+    console.log(value);
+}
