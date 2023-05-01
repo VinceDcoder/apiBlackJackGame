@@ -211,7 +211,5 @@ function reloadGame(){
 function score(){
     var value = document.getElementById("bet_100").value;
 
-    
-
     console.log(value);
 }
