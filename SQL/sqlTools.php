@@ -3,7 +3,7 @@
 require_once './config.php';
 
 function getConnection(){
-    global $servername,$username,$password, $dbname;
+    global $servername,$username,$password,$dbname;
     $conn = mysqli_connect($servername,$username,$password,$dbname);
 
     if(!$conn){
