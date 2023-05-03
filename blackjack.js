@@ -12,10 +12,11 @@ var wins = 0;
 var canHit = true;
 
 var totalScore = 1000;
-// var chips100 = 100;
-// var chips200 = 200;
-// var chips500 = 500;
-// var chips1000 = 1000;
+var value_100 = document.getElementById("bet_100");
+var value_200 = document.getElementById("bet_200");
+var value_500 = document.getElementById("bet_500");
+var value_1000 = document.getElementById("bet_1000");
+
 
 window.onload = function loadGame(){
     buildDeck();
@@ -70,11 +71,6 @@ function startGame() {
 
     document.getElementById("hit").addEventListener("click", hit);
     document.getElementById("stay").addEventListener("click", stay);
-
-    document.getElementById("bet_100").addEventListener("click", score);
-    document.getElementById("bet_200").addEventListener("click", score);
-    document.getElementById("bet_500").addEventListener("click", score);
-    document.getElementById("bet_1000").addEventListener("click", score);
 
 
     document.getElementById("player_sum").append(playerSum);
@@ -209,7 +205,7 @@ function reloadGame(){
 }
 
 function score(){
-    var value = document.getElementById("bet_100").value;
+    var scoreValue = document.getElementById("bet_100").value;
 
-    console.log(value);
+    console.log(scoreValue);
 }

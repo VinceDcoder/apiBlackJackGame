@@ -10,6 +10,7 @@
 
     <body>
         <h1 id="game_name">Jack Black's Black Jack</h1>
+        <audio id="peaches_audio" loop autoplay controls src="./musicFiles/peaches.mp3"></audio>
         <div id="jbTable">
             <div class="column">
                 <h2 id="total_score">Score: <span></span></h2> 
@@ -42,10 +43,5 @@
             <p>Wins: <span id="number_of_wins"></span></p>
             <button id="try_again" onclick="reloadGame()">Try Again</button>
         </div>     
-        
-        <h2 id="music_selection" >Music: </h2>
-        <audio controls loop>
-            <source src="./musicFiles/SpotifyMate.com - Peaches - Jack Black.mp3" type="audio/mpeg">
-        </audio>
     </body>
 </html>
