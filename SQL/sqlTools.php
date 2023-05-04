@@ -13,7 +13,7 @@ function getConnection(){
         return $conn;
     }
 }
-
+//comment
 function closeConnection($conn){
     if(!mysqli_close($conn)){
         die(mysqli_error($conn) . "\n");

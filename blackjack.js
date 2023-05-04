@@ -6,7 +6,7 @@ var playerAceCount = 0;
 
 var hidden;
 var deck;
-
+//comment
 var wins = 0;
 
 var canHit = true;
