@@ -72,6 +72,9 @@ function startGame() {
     document.getElementById("hit").addEventListener("click", hit);
     document.getElementById("stay").addEventListener("click", stay);
 
+    // document.getElementById("bet_100").addEventListener("click", calcScore(100));
+
+
     document.getElementById("player_sum").append(playerSum);
 }
 
@@ -203,6 +206,31 @@ function reloadGame(){
     startGame();
 }
 
-function showScore(betAmount){
-    console.log(betAmount);
+function calcScore(betAmount){
+    // if (playerSum > 21) {
+    //     totalScore -= betAmount;
+    // }
+    // else if (dealerSum > 21) {
+    //     totalScore += (betAmount * 2);
+    // }
+    // else if (playerSum == dealerSum) {
+    //     totalScore += betAmount;
+    // }
+    // //checks sums if both are greater than 21
+    // else if(playerSum > dealerSum){
+    //     totalScore += (betAmount * 2);
+    // }
+    // else if(playerSum < dealerSum){
+    //     totalScore -= betAmount;
+    // }
+
+    if(totalScore < 0){
+        let message = "";
+        canHit = false;
+        document.getElementById("game_results").innerText = message;
+        document.getElementById("display_results").style.display = "initial";
+    } 
+
+    totalScore -= betAmount;
+    console.log(totalScore);
 }
