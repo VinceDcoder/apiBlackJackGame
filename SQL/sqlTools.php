@@ -19,4 +19,12 @@ function closeConnection($conn){
         die(mysqli_error($conn) . "\n");
     }
 }
+function getScores(){
+    $conn = getConnection();
+    $getQry = <<<QUERY
+    SELECT name, highScore from blackjackScores
+    ORDER BY highScore DESC 
+    LIMIT 21;
+    QUERY;
+}
 ?>
