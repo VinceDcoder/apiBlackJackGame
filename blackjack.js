@@ -11,7 +11,7 @@ var wins = 0;
 
 var canHit = true;
 
-var totalScore = 1000;
+var totalScore = 10000;
 var value_100 = document.getElementById("bet_100");
 var value_200 = document.getElementById("bet_200");
 var value_500 = document.getElementById("bet_500");
@@ -71,7 +71,6 @@ function startGame() {
 
     document.getElementById("hit").addEventListener("click", hit);
     document.getElementById("stay").addEventListener("click", stay);
-
 
     document.getElementById("player_sum").append(playerSum);
 }
@@ -204,8 +203,6 @@ function reloadGame(){
     startGame();
 }
 
-function score(){
-    var scoreValue = document.getElementById("bet_100").value;
-
-    console.log(scoreValue);
+function showScore(betAmount){
+    console.log(betAmount);
 }
