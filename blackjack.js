@@ -12,10 +12,6 @@ var wins = 0;
 var canHit = true;
 
 var totalScore = 10000;
-var value_100 = document.getElementById("bet_100");
-var value_200 = document.getElementById("bet_200");
-var value_500 = document.getElementById("bet_500");
-var value_1000 = document.getElementById("bet_1000");
 
 
 window.onload = function loadGame(){
@@ -49,6 +45,7 @@ function startGame() {
     hidden = deck.pop();
     dealerSum += getValue(hidden);
     dealerAceCount += checkAce(hidden);
+    canHit = false;
 
     while (dealerSum < 17) {
         let cardImg = document.createElement("img");
@@ -72,7 +69,10 @@ function startGame() {
     document.getElementById("hit").addEventListener("click", hit);
     document.getElementById("stay").addEventListener("click", stay);
 
-    // document.getElementById("bet_100").addEventListener("click", calcScore(100));
+    document.getElementById("bet_100").addEventListener("click", saveBet("100"));
+    document.getElementById("bet_200").addEventListener("click", saveBet("200"));
+    document.getElementById("bet_500").addEventListener("click", saveBet("500"));
+    document.getElementById("bet_1000").addEventListener("click", saveBet("1000"));
 
 
     document.getElementById("player_sum").append(playerSum);
@@ -206,31 +206,6 @@ function reloadGame(){
     startGame();
 }
 
-function calcScore(betAmount){
-    // if (playerSum > 21) {
-    //     totalScore -= betAmount;
-    // }
-    // else if (dealerSum > 21) {
-    //     totalScore += (betAmount * 2);
-    // }
-    // else if (playerSum == dealerSum) {
-    //     totalScore += betAmount;
-    // }
-    // //checks sums if both are greater than 21
-    // else if(playerSum > dealerSum){
-    //     totalScore += (betAmount * 2);
-    // }
-    // else if(playerSum < dealerSum){
-    //     totalScore -= betAmount;
-    // }
-
-    if(totalScore < 0){
-        let message = "";
-        canHit = false;
-        document.getElementById("game_results").innerText = message;
-        document.getElementById("display_results").style.display = "initial";
-    } 
-
-    totalScore -= betAmount;
-    console.log(totalScore);
+function saveBet(betAmount){
+    console.log(betAmount);
 }
