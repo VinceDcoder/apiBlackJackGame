@@ -10,6 +10,9 @@ var deck;
 var wins = 0;
 
 var canHit = true;
+var canBet = true;
+
+var bet;
 
 var totalScore = 10000;
 
@@ -69,17 +72,19 @@ function startGame() {
     document.getElementById("hit").addEventListener("click", hit);
     document.getElementById("stay").addEventListener("click", stay);
 
-    document.getElementById("bet_100").addEventListener("click", saveBet("100"));
-    document.getElementById("bet_200").addEventListener("click", saveBet("200"));
-    document.getElementById("bet_500").addEventListener("click", saveBet("500"));
-    document.getElementById("bet_1000").addEventListener("click", saveBet("1000"));
-
+    document.getElementById("bet_100").addEventListener("click", (event) => {saveBet("100");});
+    document.getElementById("bet_200").addEventListener("click", (event) => {saveBet("200");});
+    document.getElementById("bet_500").addEventListener("click", (event) => {saveBet("500");});
+    document.getElementById("bet_1000").addEventListener("click", (event) => {saveBet("1000");});
 
     document.getElementById("player_sum").append(playerSum);
 }
 
 function hit() {
     if (!canHit) {
+        return;
+    }
+    else if( totalScore <= 0){
         return;
     }
 
@@ -95,6 +100,8 @@ function hit() {
 
     if (reduceAce(playerSum, playerAceCount) > 21) {
         canHit = false;
+        totalScore  -= bet;
+
         message = "You Lose!";
         
         document.getElementById("dealer_sum").innerText = dealerSum;
@@ -103,6 +110,8 @@ function hit() {
 
         document.getElementById("hidden").src = "./cards/" + hidden + ".png";
     }
+
+    console.log(totalScore);
 
     document.getElementById("player_sum").innerText = playerSum;
 }
@@ -117,28 +126,39 @@ function stay() {
     let message = "";
 
     if (playerSum > 21) {
+        totalScore  -= bet;
         message = "You Lose!";
     }
     else if (dealerSum > 21) {
         message = "You win!";
         wins++;
+        totalScore += (bet * 2);
+
         document.getElementById("display_results").style.display = "initial";
     }
     else if (playerSum == dealerSum) {
         message = "Tie!";
+        totalScore += bet;
+
         document.getElementById("display_results").style.display = "initial";
     }
     //checks sums if both are greater than 21
     else if(playerSum > dealerSum){
         message = "You win!";
         wins++;
+        totalScore += (bet * 2);
+        
         document.getElementById("display_results").style.display = "initial";
     }
     else if(playerSum < dealerSum){
         message = "You Lose!";
+        totalScore -= bet;
+
         document.getElementById("display_results").style.display = "initial";
     }
     
+    console.log(totalScore);
+
     document.getElementById("dealer_sum").innerText = dealerSum;
     document.getElementById("player_sum").innerText = playerSum;
 
@@ -183,6 +203,7 @@ function reloadGame(){
     dealerSum = 0;
 
     canHit = true;
+    canBet = true;
 
     // resets results pop-up
     document.getElementById("display_results").style.display = "none";
@@ -206,6 +227,28 @@ function reloadGame(){
     startGame();
 }
 
-function saveBet(betAmount){
+function saveBet(betAmount){  
+    if (!canBet) {
+        return;
+    }
+    else if( totalScore <= 0){
+        return;
+    }
+    canBet = false;
+    canHit = true;
+    bet = betAmount;
     console.log(betAmount);
 }
+
+function calcHighScoresWinner(bet){
+    totalScore += (bet * 2);
+    console.log(totalScore);
+
+}
+
+function calcHighScoresLoser(bet){
+    totalScore -= bet;
+    console.log(totalScore);
+
+}
+
