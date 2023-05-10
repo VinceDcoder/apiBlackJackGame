@@ -1,6 +1,5 @@
 <?php
-
-require_once './config.php';
+require_once("config.php");
 
 function getConnection(){
     global $servername,$username,$password,$dbname;
@@ -19,6 +18,48 @@ function closeConnection($conn){
         die(mysqli_error($conn) . "\n");
     }
 }
+function addUser($user){
+    $conn = getConnection();
+    $insertQry = <<<QUERY
+    INSERT INTO blackjackScores (name)
+    VALUES(?)
+    QUERY;
+
+    $insertStatemment = mysqli_prepare($conn,$insertQry);
+
+    mysqli_stmt_bind_param($insertStatement, 's', $user);
+
+    if(mysqli_stmt_execute($productStatement)){
+        echo("record inserted succesfully\n");
+    }else{
+        die(mysqli_error($conn) . "\n");
+    }
+
+    closeConnection($conn);
+}
+
+//Insert highscore statement
+function addScore($user, $score){
+    $conn = getConnection();
+    $insertQry = <<<QUERY
+    INSERT INTO blackjackScores (highScore) VALUES(?) where name= ?
+    QUERY;
+
+    $insertStatement = mysqli_prepare($conn,$insertQry);
+
+    mysqli_stmt_bind_param($insertStatement, 'ss',$score, $name);
+
+    if(mysqli_stmt_execute($productStatement)){
+        echo("record inserted succesfully\n");
+    }else{
+        die(mysqli_error($conn) . "\n");
+    }
+
+    closeConnection($conn);
+}
+
+
+
 function getScores(){
     $conn = getConnection();
     $getQry = <<<QUERY
@@ -26,5 +67,16 @@ function getScores(){
     ORDER BY highScore DESC 
     LIMIT 21;
     QUERY;
+
+    $getStatement = mysqli_prepare($conn, $getQry);
+    mysqli_stmt_execute($getStatement);
+    $result = mysqli_stmt_get_result($getStatement);
+    $scores = [];
+    while($row = mysqli_fetch_assoc($result)){
+        array_push($scores, $row);
+    }
+    return $scores;
+
+    closeConnection($conn);
 }
 ?>

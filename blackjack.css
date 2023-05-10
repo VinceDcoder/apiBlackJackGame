@@ -50,6 +50,17 @@ body{
     border-radius: 55px;
     background-color: rgb(193, 120, 10);
 }
+/*Highscores*/
+.scores{
+    text-align: center;
+    color: white;
+    background-color: lightgray;
+    width: 300px;
+    padding: 2px;
+    border-radius: 10px;
+    margin: auto;
+    width: 20%;
+}
 
 /* Chips */
 #score_header{
