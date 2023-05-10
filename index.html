@@ -13,7 +13,7 @@
         <audio id="peaches_audio" loop autoplay controls src="./musicFiles/peaches.mp3"></audio>
         <div id="jbTable">
             <div class="column">
-                <h2 id="total_score">Score: <span></span></h2> 
+                <h2 id="score_header">Score: $<span id="total_score_display"></span></h2> 
 
                 <button class="chips" id="bet_100" value="100">100</button>
                 <button class="chips" id="bet_200" value="200">200</button>
@@ -35,7 +35,9 @@
                     <br>               
             </div>
             <div class="column">
-                <!-- empty space for now -->
+                <h2 id="player_bet_header">You Bet: $<span id="player_bet_display"></span></h2> 
+                <br>
+                <h2 id="player_amount_won_header">You Won: $<span id="player_amount_won_display"></span></h2> 
             </div>
         </div>
         <div id="display_results" style="display: none"> 

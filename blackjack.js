@@ -10,6 +10,7 @@ var deck;
 var wins = 0;
 
 var canHit = true;
+var canStay = true;
 var canBet = true;
 
 var bet;
@@ -49,6 +50,7 @@ function startGame() {
     dealerSum += getValue(hidden);
     dealerAceCount += checkAce(hidden);
     canHit = false;
+    canStay = false;
 
     while (dealerSum < 17) {
         let cardImg = document.createElement("img");
@@ -72,12 +74,19 @@ function startGame() {
     document.getElementById("hit").addEventListener("click", hit);
     document.getElementById("stay").addEventListener("click", stay);
 
+    // sets the bet amount to global var with a function call to saveBet
     document.getElementById("bet_100").addEventListener("click", (event) => {saveBet("100");});
     document.getElementById("bet_200").addEventListener("click", (event) => {saveBet("200");});
     document.getElementById("bet_500").addEventListener("click", (event) => {saveBet("500");});
     document.getElementById("bet_1000").addEventListener("click", (event) => {saveBet("1000");});
 
+    document.getElementById("total_score_display").innerText = totalScore;
+    document.getElementById("player_bet_display").innerText = "0";
+    document.getElementById("player_amount_won_display").innerText = "0";
+
+
     document.getElementById("player_sum").append(playerSum);
+
 }
 
 function hit() {
@@ -100,23 +109,26 @@ function hit() {
 
     if (reduceAce(playerSum, playerAceCount) > 21) {
         canHit = false;
-        totalScore  -= bet;
-
         message = "You Lose!";
         
         document.getElementById("dealer_sum").innerText = dealerSum;
         document.getElementById("game_results").innerText = message;
         document.getElementById("display_results").style.display = "initial";
 
+        document.getElementById("player_amount_won_display").innerText = bet;
+        document.getElementById("total_score_display").innerText = totalScore;
+
         document.getElementById("hidden").src = "./cards/" + hidden + ".png";
     }
-
-    console.log(totalScore);
 
     document.getElementById("player_sum").innerText = playerSum;
 }
 
 function stay() {
+    if(!canStay){
+        return;
+    }
+
     dealerSum = reduceAce(dealerSum, dealerAceCount);
     playerSum = reduceAce(playerSum, playerAceCount);
 
@@ -126,19 +138,23 @@ function stay() {
     let message = "";
 
     if (playerSum > 21) {
-        totalScore  -= bet;
         message = "You Lose!";
+        document.getElementById("player_amount_won_display").innerText = bet;
     }
     else if (dealerSum > 21) {
         message = "You win!";
         wins++;
+
         totalScore += (bet * 2);
+        document.getElementById("player_amount_won_display").innerText = bet * 2;
 
         document.getElementById("display_results").style.display = "initial";
     }
     else if (playerSum == dealerSum) {
         message = "Tie!";
-        totalScore += bet;
+
+        totalScore += (bet * 1);
+        document.getElementById("player_amount_won_display").innerText = bet;
 
         document.getElementById("display_results").style.display = "initial";
     }
@@ -146,19 +162,21 @@ function stay() {
     else if(playerSum > dealerSum){
         message = "You win!";
         wins++;
-        totalScore += (bet * 2);
         
+        totalScore += (bet * 2);
+        document.getElementById("player_amount_won_display").innerText = bet * 2;
+
         document.getElementById("display_results").style.display = "initial";
     }
     else if(playerSum < dealerSum){
         message = "You Lose!";
-        totalScore -= bet;
+        document.getElementById("player_amount_won_display").innerText = bet;
 
         document.getElementById("display_results").style.display = "initial";
     }
-    
-    console.log(totalScore);
 
+    document.getElementById("total_score_display").innerText = totalScore;
+    
     document.getElementById("dealer_sum").innerText = dealerSum;
     document.getElementById("player_sum").innerText = playerSum;
 
@@ -234,21 +252,13 @@ function saveBet(betAmount){
     else if( totalScore <= 0){
         return;
     }
+
     canBet = false;
     canHit = true;
+    canStay = true;
+
+    totalScore -= betAmount;
     bet = betAmount;
-    console.log(betAmount);
-}
-
-function calcHighScoresWinner(bet){
-    totalScore += (bet * 2);
-    console.log(totalScore);
-
-}
-
-function calcHighScoresLoser(bet){
-    totalScore -= bet;
-    console.log(totalScore);
-
+    document.getElementById("player_bet_display").innerText = bet;
 }
 
