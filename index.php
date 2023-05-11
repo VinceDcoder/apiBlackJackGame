@@ -1,11 +1,9 @@
 <?php
-<<<<<<< HEAD
-    require_once "./SQL/sqlTools.php";
-=======
+
+require_once "./SQL/sqlTools.php";
 require_once "./SQL/sqlTools.php";
 require_once "./validate.php";
-$postTarget = htmlspecialchars($_SERVER['PHP_SELF']);
->>>>>>> 08f0f6c4020098d98fde151fb9872de0dbb819c2
+$postTarget = htmlspecialchars($_SERVER['PHP_SELF']); 
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
     $user;

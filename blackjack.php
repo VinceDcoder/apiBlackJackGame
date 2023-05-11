@@ -1,12 +1,8 @@
 <?php
     require_once "./SQL/sqlTools.php";
-<<<<<<< HEAD
-    if($_SERVER["REQUEST_METHOD"] == "POST"){  
+    if($_SERVER["REQUEST_METHOD"] == "post"){  
         addUser($_POST['user']);
     }
-=======
->>>>>>> 08f0f6c4020098d98fde151fb9872de0dbb819c2
-    
 ?>
 
 <!DOCTYPE html>
