@@ -1,6 +1,27 @@
 <?php
+<<<<<<< HEAD
     require_once "./SQL/sqlTools.php";
+=======
+require_once "./SQL/sqlTools.php";
+require_once "./validate.php";
+$postTarget = htmlspecialchars($_SERVER['PHP_SELF']);
+>>>>>>> 08f0f6c4020098d98fde151fb9872de0dbb819c2
 
+if($_SERVER["REQUEST_METHOD"] == "POST"){
+    $user;
+    $errors = [];
+    foreach($_POST as $key => $value){
+        $user[$key] = cleanData($value);
+    }
+    if(!validName($user['name'])){
+        $errors['name']= "Only use alphabet and numbers";
+    }
+
+    if(empty($errors)){
+        addUser($user);
+        console.log($user);
+    }
+}
 ?>
 
 <html>

@@ -25,11 +25,11 @@ function addUser($user){
     VALUES(?)
     QUERY;
 
-    $insertStatemment = mysqli_prepare($conn,$insertQry);
+    $insertStatement = mysqli_prepare($conn,$insertQry);
 
-    mysqli_stmt_bind_param($insertStatement, 's', $user);
+    mysqli_stmt_bind_param($insertStatement, 's', $user['name']);
 
-    if(mysqli_stmt_execute($productStatement)){
+    if(mysqli_stmt_execute($insertStatement)){
         echo("record inserted succesfully\n");
     }else{
         die(mysqli_error($conn) . "\n");
@@ -79,4 +79,5 @@ function getScores(){
 
     closeConnection($conn);
 }
+
 ?>
