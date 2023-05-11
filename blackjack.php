@@ -1,3 +1,11 @@
+<?php
+    require_once "./SQL/sqlTools.php";
+    if($_SERVER["REQUEST_METHOD"] == "post"){  
+        addUser($_POST);
+    }
+    
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
