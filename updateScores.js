@@ -8,10 +8,10 @@ var con = mysql.createConnection({
     database: "blackjack"
   });
 
-function updateScore(id, score){  
+function updateScore(name, score){  
   con.connect(function(err) {
     if (err) throw err;
-    con.query("UPDATE blackjackScores SET highScore=" + score + " WHERE id=" + id + ";", function (err, result, fields) {
+    con.query("UPDATE blackjackScores SET highScore=" + score + " WHERE name=" + name + ";", function (err, result, fields) {
       if (err) throw err;
       console.log(result);
     });

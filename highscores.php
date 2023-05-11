@@ -15,7 +15,7 @@
 
     <h1 id="name"> Jack Black's Blackjack</h1>
     <div id="play">
-    <a href="blackjack.html">PLAY</a>      
+    <a href="index.php">PLAY</a>      
       
 </div>
 

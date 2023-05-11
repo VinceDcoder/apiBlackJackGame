@@ -1,7 +1,7 @@
 <?php
     require_once "./SQL/sqlTools.php";
-    if($_SERVER["REQUEST_METHOD"] == "post"){  
-        addUser($_POST);
+    if($_SERVER["REQUEST_METHOD"] == "POST"){  
+        addUser($_POST['user']);
     }
     
 ?>
@@ -45,7 +45,7 @@
             <div class="column">
                 <h2 id="player_bet_header">You Bet: $<span id="player_bet_display"></span></h2> 
                 <br>
-                <h2 id="player_amount_won_header">You Won: $<span id="player_amount_won_display"></span></h2> 
+                <h2 id="player_results_header"><span id="player_results_display"></span></h2> 
             </div>
         </div>
         <div id="display_results" style="display: none"> 

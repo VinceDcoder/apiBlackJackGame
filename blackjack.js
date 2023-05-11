@@ -82,7 +82,7 @@ function startGame() {
 
     document.getElementById("total_score_display").innerText = totalScore;
     document.getElementById("player_bet_display").innerText = "0";
-    document.getElementById("player_amount_won_display").innerText = "0";
+    document.getElementById("player_results_display").innerText = "You Won: $0";
 
 
     document.getElementById("player_sum").append(playerSum);
@@ -115,7 +115,7 @@ function hit() {
         document.getElementById("game_results").innerText = message;
         document.getElementById("display_results").style.display = "initial";
 
-        document.getElementById("player_amount_won_display").innerText = bet;
+        document.getElementById("player_results_display").innerText = "You Lost: " + bet;
         document.getElementById("total_score_display").innerText = totalScore;
 
         document.getElementById("hidden").src = "./cards/" + hidden + ".png";
@@ -139,14 +139,14 @@ function stay() {
 
     if (playerSum > 21) {
         message = "You Lose!";
-        document.getElementById("player_amount_won_display").innerText = bet;
+        document.getElementById("player_results_display").innerText = "You Lost: " + bet;
     }
     else if (dealerSum > 21) {
         message = "You win!";
         wins++;
 
         totalScore += (bet * 2);
-        document.getElementById("player_amount_won_display").innerText = bet * 2;
+        document.getElementById("player_results_display").innerText = "You Won: " + (bet * 2);
 
         document.getElementById("display_results").style.display = "initial";
     }
@@ -154,7 +154,7 @@ function stay() {
         message = "Tie!";
 
         totalScore += (bet * 1);
-        document.getElementById("player_amount_won_display").innerText = bet;
+        document.getElementById("player_results_display").innerText = "You Won: " + bet;
 
         document.getElementById("display_results").style.display = "initial";
     }
@@ -164,13 +164,13 @@ function stay() {
         wins++;
         
         totalScore += (bet * 2);
-        document.getElementById("player_amount_won_display").innerText = bet * 2;
+        document.getElementById("player_results_display").innerText = "You Won: " + (bet * 2);
 
         document.getElementById("display_results").style.display = "initial";
     }
     else if(playerSum < dealerSum){
         message = "You Lose!";
-        document.getElementById("player_amount_won_display").innerText = bet;
+        document.getElementById("player_results_display").innerText = "You Lost: " + bet;
 
         document.getElementById("display_results").style.display = "initial";
     }
@@ -240,6 +240,10 @@ function reloadGame(){
     dealerHidden.setAttribute("src", "./cards/BACK.png");
     document.getElementById("dealer_cards").appendChild(dealerHidden);
 
+    let name = document.getElementById("user").value;
+    console.log(name);
+    // updateScore(name,totalScore);
+
     buildDeck();
     shuffleDeck();
     startGame();
@@ -258,7 +262,9 @@ function saveBet(betAmount){
     canStay = true;
 
     totalScore -= betAmount;
+
     bet = betAmount;
     document.getElementById("player_bet_display").innerText = bet;
+    document.getElementById("total_score_display").innerText = totalScore;
 }
 
