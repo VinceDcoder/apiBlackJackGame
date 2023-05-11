@@ -25,11 +25,11 @@ function addUser($user){
     VALUES(?)
     QUERY;
 
-    $insertStatemment = mysqli_prepare($conn,$insertQry);
+    $insertStatement = mysqli_prepare($conn,$insertQry);
 
-    mysqli_stmt_bind_param($insertStatement, 's', $user);
+    mysqli_stmt_bind_param($insertStatement, 's', $user['name']);
 
-    if(mysqli_stmt_execute($productStatement)){
+    if(mysqli_stmt_execute($insertStatement)){
         echo("record inserted succesfully\n");
     }else{
         die(mysqli_error($conn) . "\n");
@@ -39,7 +39,7 @@ function addUser($user){
 }
 
 //Insert highscore statement
-function addScore($user, $score){
+function addScore($id, $score){
     $conn = getConnection();
     $insertQry = <<<QUERY
     INSERT INTO blackjackScores (highScore) VALUES(?) where name= ?
@@ -47,7 +47,7 @@ function addScore($user, $score){
 
     $insertStatement = mysqli_prepare($conn,$insertQry);
 
-    mysqli_stmt_bind_param($insertStatement, 'ss',$score, $name);
+    mysqli_stmt_bind_param($insertStatement, 'ss',$score, $id);
 
     if(mysqli_stmt_execute($productStatement)){
         echo("record inserted succesfully\n");
@@ -79,4 +79,5 @@ function getScores(){
 
     closeConnection($conn);
 }
+
 ?>
