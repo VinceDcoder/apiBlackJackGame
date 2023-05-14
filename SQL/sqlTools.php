@@ -27,7 +27,7 @@ function addUser($user){
 
     $insertStatement = mysqli_prepare($conn,$insertQry);
 
-    mysqli_stmt_bind_param($insertStatement, 's', $user['name']);
+    mysqli_stmt_bind_param($insertStatement, 's', $user);
 
     if(mysqli_stmt_execute($insertStatement)){
         echo("record inserted succesfully\n");
@@ -42,12 +42,12 @@ function addUser($user){
 function addScore($user, $score){
     $conn = getConnection();
     $insertQry = <<<QUERY
-    INSERT INTO blackjackScores (highScore) VALUES(?) where name= ?
+    UPDATE blackjackScores (highScore) VALUES(?) where name= ?
     QUERY;
 
     $insertStatement = mysqli_prepare($conn,$insertQry);
 
-    mysqli_stmt_bind_param($insertStatement, 'ss',$score, $name);
+    mysqli_stmt_bind_param($insertStatement, 'ss',$score, $user['name']);
 
     if(mysqli_stmt_execute($productStatement)){
         echo("record inserted succesfully\n");
