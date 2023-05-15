@@ -29,11 +29,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <title>Black Jack</title>
         <link rel="stylesheet" href="blackjack.css">
         <script src="blackjack.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script>var name = "<?= $_POST['name']?>";</script>
     </head>
 
     <body>
         <h1 id="game_name">Jack Black's Black Jack</h1>
-        <audio id="peaches_audio" loop autoplay controls src="./musicFiles/peaches.mp3"></audio>
+        <audio id="peaches_audio" loop autoplay src="./musicFiles/peaches.mp3"></audio>
         <div id="jbTable">
             <div class="column">
                 <h2 id="score_header">Score: $<span id="total_score_display"></span></h2> 
@@ -55,7 +57,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         
                     <button id="hit">Hit</button>
                     <button id="stay">Stay</button> 
-                    <br>               
+                    <br>        
+                    <button id="upload" onclick="updateScore(totalScore, name)">Upload Your Score!</button>       
             </div>
             <div class="column">
                 <h2 id="player_bet_header">You Bet: $<span id="player_bet_display"></span></h2> 
@@ -67,6 +70,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <p id="game_results"></p>
             <p>Wins: <span id="number_of_wins"></span></p>
             <button id="try_again" onclick="reloadGame()">Try Again</button>
-        </div>     
+        </div>    
     </body>
 </html>

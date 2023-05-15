@@ -1,3 +1,5 @@
+import ('./updateScores.js');
+
 var dealerSum = 0;
 var playerSum = 0;
 
