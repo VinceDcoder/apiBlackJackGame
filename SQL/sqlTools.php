@@ -27,7 +27,7 @@ function addUser($user){
 
     $insertStatement = mysqli_prepare($conn,$insertQry);
 
-    mysqli_stmt_bind_param($insertStatement, 's', $user);
+    mysqli_stmt_bind_param($insertStatement, 's', $user['name']);
 
     if(mysqli_stmt_execute($insertStatement)){
         echo("record inserted succesfully\n");
@@ -39,15 +39,15 @@ function addUser($user){
 }
 
 //Insert highscore statement
-function addScore($score, $user){
+function addScore($score){
     $conn = getConnection();
     $insertQry = <<<QUERY
-    UPDATE blackjackScores set highScore=? where name=?
+    UPDATE blackjackScores set highScore=? order by createdAt DESC limit 1
     QUERY;
 
     $insertStatement = mysqli_prepare($conn,$insertQry);
 
-    mysqli_stmt_bind_param($insertStatement, 'ss',$score, $user);
+    mysqli_stmt_bind_param($insertStatement, 's',$score);
 
     if(mysqli_stmt_execute($insertStatement)){
         echo("record inserted succesfully\n");
@@ -57,7 +57,6 @@ function addScore($score, $user){
 
     closeConnection($conn);
 }
-
 
 
 function getScores(){
@@ -78,6 +77,7 @@ function getScores(){
     return $scores;
 
     closeConnection($conn);
-}
+}  
+
 
 ?>

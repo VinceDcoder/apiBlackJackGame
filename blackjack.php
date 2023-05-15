@@ -4,21 +4,26 @@ require_once "./validate.php";
 $postTarget = htmlspecialchars($_SERVER['PHP_SELF']);
 
 if($_SERVER["REQUEST_METHOD"] == "POST"){
-    $user;
-    $errors = [];
-    foreach($_POST as $key => $value){
-        $user[$key] = cleanData($value);
-    }
-    print_r($user);
-    if(!validName($user['name'])){
-        $errors['name']= "Only use alphabet and numbers";
-    }
+    if(isset($_POST['name'])){
+        $user;
+        $errors = [];
+         foreach($_POST as $key => $value){
+             $user[$key] = cleanData($value);
+         }
 
-    if(empty($errors)){
+        if(!validName($user['name'])){
+        $errors['name']= "Only use alphabet and numbers";
+         }
+
+        if(empty($errors)){
         addUser($user);
         console.log($user);
+        }
     }
+
+
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -30,7 +35,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         <link rel="stylesheet" href="blackjack.css">
         <script src="blackjack.js"></script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-        <script>var name = "<?= $_POST['name']?>";</script>
     </head>
 
     <body>
@@ -57,8 +61,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
         
                     <button id="hit">Hit</button>
                     <button id="stay">Stay</button> 
-                    <br>        
-                    <button id="upload" onclick="updateScore(totalScore, name)">Upload Your Score!</button>       
+                    <br>           
+                    <a id="highscore" href="./highscores.php">High Scores</a>
             </div>
             <div class="column">
                 <h2 id="player_bet_header">You Bet: $<span id="player_bet_display"></span></h2> 
@@ -71,5 +75,11 @@ if($_SERVER["REQUEST_METHOD"] == "POST"){
             <p>Wins: <span id="number_of_wins"></span></p>
             <button id="try_again" onclick="reloadGame()">Try Again</button>
         </div>    
+
     </body>
 </html>
+
+<?php
+    $data = json_decode(file_get_contents("php://input"), true);
+    addScore($data['score']);
+?>

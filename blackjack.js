@@ -1,5 +1,3 @@
-import ('./updateScores.js');
-
 var dealerSum = 0;
 var playerSum = 0;
 
@@ -20,10 +18,13 @@ var bet;
 var totalScore = 10000;
 
 
+
+
 window.onload = function loadGame(){
     buildDeck();
     shuffleDeck();
     startGame();
+
 }
 
 function buildDeck() {
@@ -242,13 +243,13 @@ function reloadGame(){
     dealerHidden.setAttribute("src", "./cards/BACK.png");
     document.getElementById("dealer_cards").appendChild(dealerHidden);
 
-    let name = document.getElementById("user").value;
-    console.log(name);
-    // updateScore(name,totalScore);
+    //upload score to database
 
     buildDeck();
     shuffleDeck();
     startGame();
+    getScore();
+    console.log(totalScore);
 }
 
 function saveBet(betAmount){  
@@ -269,4 +270,23 @@ function saveBet(betAmount){
     document.getElementById("player_bet_display").innerText = bet;
     document.getElementById("total_score_display").innerText = totalScore;
 }
+
+function getScore(){
+    var data = {
+        score: totalScore,
+    }
+    var xhr = new XMLHttpRequest();
+
+    xhr.open("POST", "./blackjack.php", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState == XMLHttpRequest.DONE) {
+            console.log("yay");
+            console.log(data);
+        }
+    };
+    xhr.send(JSON.stringify(data));
+
+}
+
 
